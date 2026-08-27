@@ -1,20 +1,17 @@
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-// import NavBar from './components/NavBar'
-// import Footer from './components/Footer'
+import { Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
-  return (
-    <div>
-      {/* <NavBar /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      {/* <Footer/> */}
-    </div>
-  )
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+        </Routes>
+    );
 }
 
-export default App
+export default App;

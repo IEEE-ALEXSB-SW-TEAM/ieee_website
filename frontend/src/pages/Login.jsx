@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { supabase } from '../supabase-client';
 import '../style/Login.css';
 
 function Login() {
@@ -7,29 +8,32 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email.trim(),
+                password,
             });
-            const data = await response.json();
 
-            if (data.status === 'ok') {
-                localStorage.setItem('token', data.token);
-                navigate('/dashboard');
-            } else {
-                setError(data.error || 'Invalid email or password');
+            if (error) {
+                setError(error.message);
+                return;
             }
-        } catch (error) {
-            setError('An error occurred. Please try again later.');
-            console.error('Error:', error);
+
+            if (data?.session || data?.user) {
+                navigate('/');
+            }
+        } catch (err) {
+            setError('An unexpected error occurred. Please try again.');
+            console.error('Error:', err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -58,7 +62,9 @@ function Login() {
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button type="submit">Login</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
+                </button>
             </form>
             <p>Don't have an account? <Link to="/register">Register here</Link></p>
         </div>

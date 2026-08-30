@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "../supabase-client";
 import "../style/Register.css";
 
 function Register() {
@@ -11,12 +12,14 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleRegister = async (e) => {
         e.preventDefault();
 
         setError("");
+        setSuccess("");
 
         // Check passwords
         if (password !== confirmPassword) {
@@ -27,30 +30,38 @@ function Register() {
         setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            const { data, error } = await supabase.auth.signUp({
+                email: email.trim(),
+                password,
+                options: {
+                    data: {
+                        username: username.trim(),
+                    },
                 },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                }),
             });
 
-            const data = await response.json();
-
-            if (data.status === "ok") {
-                // Registration successful
-                navigate("/login");
-            } else {
-                // Account already exists or another error
-                setError(data.error || "Registration failed");
+            if (error) {
+                setError(error.message);
+                return;
             }
-        } catch (error) {
-            console.error("Error:", error);
-            setError("Cannot connect to the server.");
+
+            // If account already exists with email confirmation enabled,
+            // Supabase returns an empty identities array to avoid leaking user info.
+            if (data?.user?.identities && data.user.identities.length === 0) {
+                setError("An account with this email already exists.");
+                return;
+            }
+
+            if (data?.session) {
+                // User logged in immediately (e.g. email confirmation disabled)
+                navigate("/");
+            } else {
+                // Email confirmation required
+                setSuccess("Registration successful! Please check your email to verify your account.");
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            setError("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -131,8 +142,15 @@ function Register() {
 
                 {/* Error */}
                 {error && (
-                    <p className="error-message">
+                    <p className="register-error error-message">
                         {error}
+                    </p>
+                )}
+
+                {/* Success */}
+                {success && (
+                    <p className="register-success">
+                        {success}
                     </p>
                 )}
 

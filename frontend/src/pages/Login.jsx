@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { supabase } from '../lib/supabase';
+=======
+import { supabase } from '../supabase-client';
+>>>>>>> 5e0d4ded1378ccd2c26bd38bf7a40ac95f31a82c
 import '../style/Login.css';
 
 function Login() {
@@ -16,6 +20,7 @@ function Login() {
         setLoading(true);
 
         try {
+<<<<<<< HEAD
             const { error: signInError } = await supabase.auth.signInWithPassword({
                 email,
                 password,
@@ -28,6 +33,23 @@ function Login() {
             }
         } catch (err) {
             setError('An error occurred. Please try again later.');
+=======
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email.trim(),
+                password,
+            });
+
+            if (error) {
+                setError(error.message);
+                return;
+            }
+
+            if (data?.session || data?.user) {
+                navigate('/');
+            }
+        } catch (err) {
+            setError('An unexpected error occurred. Please try again.');
+>>>>>>> 5e0d4ded1378ccd2c26bd38bf7a40ac95f31a82c
             console.error('Error:', err);
         } finally {
             setLoading(false);

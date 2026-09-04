@@ -1,10 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-<<<<<<< HEAD
 import { supabase } from "../lib/supabase";
-=======
-import { supabase } from "../supabase-client";
->>>>>>> 5e0d4ded1378ccd2c26bd38bf7a40ac95f31a82c
 import "../style/Register.css";
 
 function Register() {
@@ -34,26 +30,16 @@ function Register() {
         setLoading(true);
 
         try {
-<<<<<<< HEAD
             const { error: signUpError } = await supabase.auth.signUp({
                 email,
                 password,
                 options: {
                     data: {
                         full_name: username,
-=======
-            const { data, error } = await supabase.auth.signUp({
-                email: email.trim(),
-                password,
-                options: {
-                    data: {
-                        username: username.trim(),
->>>>>>> 5e0d4ded1378ccd2c26bd38bf7a40ac95f31a82c
                     },
                 },
             });
 
-<<<<<<< HEAD
             if (signUpError) {
                 setError(signUpError.message);
             } else {
@@ -63,30 +49,6 @@ function Register() {
         } catch (err) {
             console.error("Error:", err);
             setError("Cannot connect to the server.");
-=======
-            if (error) {
-                setError(error.message);
-                return;
-            }
-
-            // If account already exists with email confirmation enabled,
-            // Supabase returns an empty identities array to avoid leaking user info.
-            if (data?.user?.identities && data.user.identities.length === 0) {
-                setError("An account with this email already exists.");
-                return;
-            }
-
-            if (data?.session) {
-                // User logged in immediately (e.g. email confirmation disabled)
-                navigate("/");
-            } else {
-                // Email confirmation required
-                setSuccess("Registration successful! Please check your email to verify your account.");
-            }
-        } catch (err) {
-            console.error("Error:", err);
-            setError("An unexpected error occurred. Please try again.");
->>>>>>> 5e0d4ded1378ccd2c26bd38bf7a40ac95f31a82c
         } finally {
             setLoading(false);
         }

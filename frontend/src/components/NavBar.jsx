@@ -1,8 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 import "../style/Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Get current session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    // Listen for login/logout changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setMenuOpen(false);
+    navigate("/");
+  };
 
   return (
     <nav className="navbar">
@@ -36,13 +62,21 @@ function Navbar() {
           </a>
 
           <div className="navbar-auth">
-            <a href="/login" className="login-btn">
-              Login
-            </a>
+            {session ? (
+              <button className="login-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <>
+                <a href="/login" className="login-btn">
+                  Login
+                </a>
 
-            <a href="/register" className="register-btn">
-              Join Us
-            </a>
+                <a href="/register" className="register-btn">
+                  Join Us
+                </a>
+              </>
+            )}
           </div>
         </div>
 

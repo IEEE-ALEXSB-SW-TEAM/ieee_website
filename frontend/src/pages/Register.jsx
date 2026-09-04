@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "../lib/supabase";
 import "../style/Register.css";
 
 function Register() {
@@ -27,29 +28,24 @@ function Register() {
         setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:5000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            const { error: signUpError } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: username,
+                    },
                 },
-                body: JSON.stringify({
-                    username,
-                    email,
-                    password,
-                }),
             });
 
-            const data = await response.json();
-
-            if (data.status === "ok") {
+            if (signUpError) {
+                setError(signUpError.message);
+            } else {
                 // Registration successful
                 navigate("/login");
-            } else {
-                // Account already exists or another error
-                setError(data.error || "Registration failed");
             }
-        } catch (error) {
-            console.error("Error:", error);
+        } catch (err) {
+            console.error("Error:", err);
             setError("Cannot connect to the server.");
         } finally {
             setLoading(false);

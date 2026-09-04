@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 import '../style/Login.css';
 
 function Login() {
@@ -7,29 +8,29 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:5000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
+            const { error: signInError } = await supabase.auth.signInWithPassword({
+                email,
+                password,
             });
-            const data = await response.json();
 
-            if (data.status === 'ok') {
-                localStorage.setItem('token', data.token);
-                navigate('/dashboard');
+            if (signInError) {
+                setError(signInError.message);
             } else {
-                setError(data.error || 'Invalid email or password');
+                navigate('/');
             }
-        } catch (error) {
+        } catch (err) {
             setError('An error occurred. Please try again later.');
-            console.error('Error:', error);
+            console.error('Error:', err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -58,9 +59,13 @@ function Login() {
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button type="submit">Login</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
+                </button>
             </form>
-            <p>Don't have an account? <Link to="/register">Register here</Link></p>
+            <p>
+                Don't have an account? <Link to="/register">Register here</Link>
+            </p>
         </div>
     );
 }

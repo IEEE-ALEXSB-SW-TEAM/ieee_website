@@ -1,31 +1,16 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { ShieldIcon } from "./Admin/AdminIcons";
 import "../style/Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [session, setSession] = useState(null);
+  const { session, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Get current session on mount
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    // Listen for login/logout changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     setMenuOpen(false);
     navigate("/");
   };
@@ -33,10 +18,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-
-        <a href="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo">
           IEEE AlexSB
-        </a>
+        </Link>
 
         <button
           className="mobile-menu-btn"
@@ -49,17 +33,31 @@ function Navbar() {
         </button>
 
         <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
-          <a href="/" onClick={() => setMenuOpen(false)}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
             Home
-          </a>
+          </Link>
 
-          <a href="/events" onClick={() => setMenuOpen(false)}>
+          <Link to="/events" onClick={() => setMenuOpen(false)}>
             Events
-          </a>
+          </Link>
 
-          <a href="/contact" onClick={() => setMenuOpen(false)}>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>
             Contact Us
-          </a>
+          </Link>
+
+          {/* Admin Panel button displayed only for authorized administrators */}
+          {isAdmin && (
+            <Link
+              to="/admin"
+              className="navbar-admin-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="navbar-admin-icon" aria-hidden="true">
+                <ShieldIcon size={16} />
+              </span>
+              <span>Admin Panel</span>
+            </Link>
+          )}
 
           <div className="navbar-auth">
             {session ? (
@@ -68,18 +66,17 @@ function Navbar() {
               </button>
             ) : (
               <>
-                <a href="/login" className="login-btn">
+                <Link to="/login" className="login-btn">
                   Login
-                </a>
+                </Link>
 
-                <a href="/register" className="register-btn">
+                <Link to="/register" className="register-btn">
                   Join Us
-                </a>
+                </Link>
               </>
             )}
           </div>
         </div>
-
       </div>
     </nav>
   );

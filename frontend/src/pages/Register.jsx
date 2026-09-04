@@ -14,6 +14,7 @@ function Register() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
+    const [verificationSent, setVerificationSent] = useState(false);
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -21,29 +22,51 @@ function Register() {
         setError("");
         setSuccess("");
 
+        const cleanEmail = email.trim();
+        const cleanUsername = username.trim();
+
         // Check passwords
         if (password !== confirmPassword) {
             setError("Passwords do not match");
             return;
         }
 
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
+
         setLoading(true);
 
         try {
-            const { error: signUpError } = await supabase.auth.signUp({
-                email,
+            const { data, error: signUpError } = await supabase.auth.signUp({
+                email: cleanEmail,
                 password,
                 options: {
                     data: {
-                        full_name: username,
+                        full_name: cleanUsername,
                     },
                 },
             });
 
             if (signUpError) {
                 setError(signUpError.message);
+                return;
+            }
+
+            // If account already exists with email confirmation enabled, Supabase returns empty identities
+            if (data?.user?.identities && data.user.identities.length === 0) {
+                setError("An account with this email already exists. Please login instead.");
+                return;
+            }
+
+            if (data?.session) {
+                // Email confirmation is disabled in Supabase, user is signed in immediately
+                navigate("/");
+            } else if (data?.user) {
+                // Email confirmation required by Supabase
+                setVerificationSent(true);
             } else {
-                // Registration successful
                 navigate("/login");
             }
         } catch (err) {
@@ -53,6 +76,59 @@ function Register() {
             setLoading(false);
         }
     };
+
+    if (verificationSent) {
+        return (
+            <div className="register-container">
+                <div className="verification-card">
+                    <div className="verification-icon">📬</div>
+                    <h2>Verify Your Email</h2>
+                    <p className="verification-text">
+                        We have sent a confirmation link to:
+                    </p>
+                    <div className="verification-email-badge">
+                        {email.trim()}
+                    </div>
+                    <div className="verification-info-box">
+                        <p>
+                            Please click the link in your email to activate your account before logging in.
+                        </p>
+                        <p className="spam-hint">
+                            💡 Can't find the email? Check your <strong>Spam / Junk</strong> folder.
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        className="verification-action-btn"
+                        onClick={() =>
+                            navigate("/login", {
+                                state: {
+                                    message:
+                                        "Please check your email to verify your account before logging in.",
+                                    email: email.trim(),
+                                },
+                            })
+                        }
+                    >
+                        Proceed to Login →
+                    </button>
+                    <div className="verification-footer">
+                        <button
+                            type="button"
+                            className="back-btn"
+                            onClick={() => {
+                                setVerificationSent(false);
+                                setPassword("");
+                                setConfirmPassword("");
+                            }}
+                        >
+                            ← Back to registration
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="register-container">

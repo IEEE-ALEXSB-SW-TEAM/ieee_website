@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 
 import Home from "./pages/Home";
@@ -10,6 +10,9 @@ import Navbar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
+    const location = useLocation();
+    const isAdminRoute = location.pathname.startsWith("/admin");
+
     return (
         <AuthProvider>
             <div>
@@ -27,7 +30,7 @@ function App() {
                         }
                     />
                 </Routes>
-                <Footer />
+                {!isAdminRoute && <Footer />}
             </div>
         </AuthProvider>
     );

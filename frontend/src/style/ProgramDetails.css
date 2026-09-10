@@ -1,0 +1,404 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+.events-page {
+  min-height: 100vh;
+  background-color: #eeeeee;
+  color: #0f044c;
+}
+
+.events-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0 120px;
+}
+
+
+/* =========================================
+   BREADCRUMB
+========================================= */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 65px;
+
+  color: #787a91;
+  font-size: 0.85rem;
+}
+
+.breadcrumb a {
+  color: #141e61;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.breadcrumb a:hover {
+  color: #0f044c;
+}
+
+.breadcrumb strong {
+  color: #0f044c;
+}
+
+.breadcrumb-separator {
+  margin: 0 4px;
+  color: #787a91;
+}
+
+
+/* =========================================
+   DRILLDOWN SECTIONS
+========================================= */
+
+.events-drilldown {
+  margin-bottom: 90px;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.events-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+
+  margin-bottom: 40px;
+}
+
+.events-section-heading h1 {
+  margin: 12px 0 0;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -2px;
+}
+
+.events-section-heading h2 {
+  margin: 12px 0 0;
+
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.events-section-heading p {
+  max-width: 330px;
+  margin: 0;
+
+  color: #787a91;
+  line-height: 1.7;
+}
+
+.compact-heading {
+  margin-bottom: 25px;
+}
+
+
+/* =========================================
+   SECTION LABEL
+========================================= */
+
+.events-section-label {
+  display: block;
+
+  color: #787a91;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   PROGRAM DESCRIPTION
+========================================= */
+
+.program-description {
+  max-width: 800px;
+
+  margin-bottom: 20px;
+}
+
+.program-description p {
+  margin: 0;
+
+  color: #787a91;
+
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+
+/* =========================================
+   OCCURRENCE LIST
+========================================= */
+
+.occurrence-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+
+/* =========================================
+   OCCURRENCE CARD
+========================================= */
+
+.occurrence-card {
+  padding: 30px;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(120, 122, 145, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.occurrence-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 15px 35px rgba(15, 4, 76, 0.1);
+}
+
+
+/* =========================================
+   OCCURRENCE CARD HEADER
+========================================= */
+
+.occurrence-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.occurrence-season {
+  color: #787a91;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.occurrence-card h3 {
+  margin: 10px 0 0;
+
+  color: #0f044c;
+
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+
+/* =========================================
+   STATUS BADGE
+========================================= */
+
+.status-badge {
+  display: inline-block;
+
+  padding: 6px 10px;
+
+  border-radius: 3px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.status-upcoming {
+  border: 1px solid #0f044c;
+  color: #0f044c;
+}
+
+.status-completed {
+  background-color: #eeeeee;
+  color: #787a91;
+}
+
+.status-closed {
+  background-color: #eeeeee;
+  color: #787a91;
+}
+
+
+/* =========================================
+   OCCURRENCE DESCRIPTION
+========================================= */
+
+.occurrence-card > p {
+  min-height: 75px;
+
+  margin: 25px 0;
+
+  color: #787a91;
+
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.occurrence-card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(120, 122, 145, 0.2);
+
+  color: #787a91;
+
+  font-size: 0.82rem;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.event-primary-btn {
+  display: inline-block;
+
+  padding: 10px 14px;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: #141e61;
+
+  color: #eeeeee;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.event-primary-btn:hover {
+  background-color: #0f044c;
+}
+
+.event-primary-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+/* =========================================
+   EMPTY / ERROR / LOADING STATE
+========================================= */
+
+.events-state {
+  grid-column: 1 / -1;
+
+  padding: 70px 20px;
+
+  text-align: center;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(120, 122, 145, 0.2);
+}
+
+.events-state h3 {
+  margin: 0 0 10px;
+
+  color: #0f044c;
+}
+
+.events-state p {
+  margin: 0 0 25px;
+
+  color: #787a91;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .occurrence-list {
+    grid-template-columns: 1fr;
+  }
+
+  .events-section-heading {
+    display: block;
+  }
+
+  .events-section-heading p {
+    margin-top: 20px;
+  }
+}
+
+
+@media (max-width: 620px) {
+  .events-container {
+    padding: 45px 0 80px;
+  }
+
+  .breadcrumb {
+    margin-bottom: 45px;
+  }
+
+  .events-drilldown {
+    margin-bottom: 65px;
+  }
+
+  .events-section-heading h1 {
+    letter-spacing: -1px;
+  }
+
+  .occurrence-card {
+    padding: 24px;
+  }
+
+  .occurrence-card-heading {
+    flex-direction: column;
+  }
+
+  .occurrence-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .event-primary-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

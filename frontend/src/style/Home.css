@@ -17,7 +17,6 @@
 .section-label {
   display: block;
   margin-bottom: 12px;
-
   color: #787a91;
   font-size: 0.75rem;
   font-weight: 700;
@@ -31,10 +30,8 @@
 
 .hero {
   min-height: calc(100vh - 76px);
-
   background-color: #0f044c;
   color: #eeeeee;
-
   display: flex;
   align-items: center;
 }
@@ -43,7 +40,6 @@
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
@@ -57,7 +53,6 @@
 .hero-label {
   display: inline-block;
   margin-bottom: 20px;
-
   color: #787a91;
   font-size: 0.85rem;
   font-weight: 700;
@@ -67,7 +62,6 @@
 
 .hero h1 {
   margin: 0;
-
   font-size: clamp(3rem, 6vw, 5.5rem);
   line-height: 1.05;
   font-weight: 800;
@@ -81,10 +75,8 @@
 .hero p {
   max-width: 560px;
   margin: 30px 0;
-
   color: #eeeeee;
   opacity: 0.8;
-
   font-size: 1.1rem;
   line-height: 1.8;
 }
@@ -98,12 +90,9 @@
 .primary-btn,
 .secondary-btn {
   padding: 13px 26px;
-
   border-radius: 6px;
-
   text-decoration: none;
   font-weight: 600;
-
   transition: all 0.25s ease;
 }
 
@@ -141,47 +130,35 @@
 .hero-circle {
   width: 360px;
   height: 360px;
-
   border: 1px solid #787a91;
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: relative;
 }
 
 .hero-circle::before {
   content: "";
-
   position: absolute;
-
   width: 280px;
   height: 280px;
-
   border: 1px solid #787a91;
   border-radius: 50%;
-
   opacity: 0.6;
 }
 
 .hero-circle-inner {
   width: 170px;
   height: 170px;
-
   border-radius: 50%;
-
   background-color: #141e61;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #eeeeee;
   font-size: 2rem;
   font-weight: 800;
-
   z-index: 1;
 }
 
@@ -201,7 +178,6 @@
 
 .section-heading span {
   color: #787a91;
-
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -209,7 +185,6 @@
 
 .section-heading h2 {
   margin: 10px 0 0;
-
   font-size: clamp(2.3rem, 4vw, 3.5rem);
   line-height: 1.1;
 }
@@ -230,7 +205,6 @@
 .text-link {
   display: inline-block;
   margin-top: 15px;
-
   color: #141e61;
   font-weight: 700;
   text-decoration: none;
@@ -253,13 +227,11 @@
 
 .info-card {
   padding: 30px 25px;
-
   background-color: #ffffff;
-
   border: 1px solid rgba(120, 122, 145, 0.2);
-
-  transition: transform 0.25s ease,
-              box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .info-card:hover {
@@ -269,24 +241,19 @@
 
 .info-card-number {
   margin-bottom: 45px;
-
   color: #787a91;
-
   font-size: 0.8rem;
   font-weight: 700;
 }
 
 .info-card h3 {
   margin: 0 0 12px;
-
   font-size: 1.3rem;
 }
 
 .info-card p {
   margin: 0;
-
   color: #787a91;
-
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -298,7 +265,6 @@
 
 .branch-section {
   padding: 110px 0;
-
   background-color: #141e61;
   color: #eeeeee;
 }
@@ -307,13 +273,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 100px;
-
   align-items: center;
 }
 
 .branch-content h2 {
   margin: 0;
-
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.05;
   letter-spacing: -1px;
@@ -325,10 +289,8 @@
 
 .branch-content p {
   margin: 0;
-
   color: #eeeeee;
   opacity: 0.75;
-
   font-size: 1.05rem;
   line-height: 1.9;
 }
@@ -347,19 +309,17 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-
   margin-bottom: 50px;
+  gap: 30px;
 }
 
 .events-heading h2 {
   margin: 10px 0 0;
-
   font-size: clamp(2.3rem, 4vw, 3.5rem);
 }
 
 .view-all {
   color: #141e61;
-
   text-decoration: none;
   font-weight: 700;
 }
@@ -370,24 +330,23 @@
 
 
 /* =========================================
-   EVENT CARDS
+   HOME EVENT CARD
 ========================================= */
 
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.event-card-link {
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 
 .event-card {
-  padding: 30px;
-
+  padding: 35px;
   background-color: #ffffff;
-
   border: 1px solid rgba(120, 122, 145, 0.2);
-
-  transition: transform 0.25s ease,
-              box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .event-card:hover {
@@ -398,14 +357,13 @@
 .event-card-top {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-
+  align-items: center;
+  gap: 15px;
   margin-bottom: 35px;
 }
 
 .event-status {
   color: #141e61;
-
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -413,35 +371,33 @@
 
 .event-category {
   color: #787a91;
-
   font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .event-card h3 {
   margin: 0 0 15px;
-
-  font-size: 1.4rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
 }
 
 .event-card p {
-  min-height: 75px;
-
+  margin: 0;
+  max-width: 800px;
   color: #787a91;
-
-  line-height: 1.6;
-  font-size: 0.9rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 .event-card-footer {
   margin-top: 30px;
   padding-top: 20px;
-
   border-top: 1px solid rgba(120, 122, 145, 0.2);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  gap: 20px;
   font-size: 0.8rem;
 }
 
@@ -449,14 +405,12 @@
   color: #787a91;
 }
 
-.event-card-footer a {
+.event-card-footer span:last-child {
   color: #141e61;
-
-  text-decoration: none;
   font-weight: 700;
 }
 
-.event-card-footer a:hover {
+.event-card:hover .event-card-footer span:last-child {
   color: #0f044c;
 }
 
@@ -465,12 +419,15 @@
    EVENTS STATES
 ========================================= */
 
+.events-section > .section-container > p {
+  color: #787a91;
+}
+
 .events-state {
   padding: 70px 20px;
-
   text-align: center;
-
   background-color: #ffffff;
+  border: 1px solid rgba(120, 122, 145, 0.2);
 }
 
 .events-state h3 {
@@ -488,7 +445,6 @@
 
 .cta-section {
   padding: 100px 0;
-
   background-color: #0f044c;
   color: #eeeeee;
 }
@@ -497,34 +453,26 @@
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 40px;
 }
 
 .cta-container h2 {
   margin: 0;
-
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.05;
 }
 
 .cta-btn {
   padding: 15px 30px;
-
   background-color: #eeeeee;
   color: #0f044c;
-
   border-radius: 6px;
-
   text-decoration: none;
   font-weight: 700;
-
   white-space: nowrap;
-
   transition: all 0.25s ease;
 }
 
@@ -533,13 +481,21 @@
   color: #eeeeee;
 }
 
+.event-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.event-card-link:hover {
+  color: inherit;
+}
 
 /* =========================================
    RESPONSIVE
 ========================================= */
 
 @media (max-width: 1000px) {
-
   .hero-container {
     grid-template-columns: 1fr;
     padding: 80px 0;
@@ -558,16 +514,9 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .events-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
 }
 
-
 @media (max-width: 700px) {
-
   .about-section,
   .events-section {
     padding: 80px 0;
@@ -577,14 +526,25 @@
     grid-template-columns: 1fr;
   }
 
-  .events-grid {
-    grid-template-columns: 1fr;
-  }
-
   .events-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .event-card {
+    padding: 25px;
+  }
+
+  .event-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 28px;
+  }
+
+  .event-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .cta-container {
@@ -596,5 +556,4 @@
     width: 100%;
     text-align: center;
   }
-
 }

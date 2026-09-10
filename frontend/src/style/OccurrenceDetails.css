@@ -1,0 +1,477 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+.events-page {
+  min-height: 100vh;
+  background-color: #eeeeee;
+  color: #0f044c;
+}
+
+.events-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0 120px;
+}
+
+
+/* =========================================
+   BREADCRUMB
+========================================= */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 60px;
+
+  color: #787a91;
+  font-size: 0.85rem;
+}
+
+.breadcrumb a {
+  color: #141e61;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.breadcrumb a:hover {
+  color: #0f044c;
+}
+
+.breadcrumb strong {
+  color: #0f044c;
+}
+
+.breadcrumb-separator {
+  margin: 0 4px;
+  color: #787a91;
+}
+
+
+/* =========================================
+   EVENT DETAIL
+========================================= */
+
+.occurrence-detail {
+  margin-bottom: 80px;
+}
+
+
+/* =========================================
+   EVENT HEADER
+========================================= */
+
+.occurrence-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-bottom: 35px;
+}
+
+.occurrence-detail-header h1 {
+  margin: 12px 0 0;
+
+  color: #0f044c;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -2px;
+}
+
+.occurrence-detail-header h2 {
+  margin: 15px 0 0;
+
+  color: #787a91;
+
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 500;
+}
+
+
+/* =========================================
+   SECTION LABEL
+========================================= */
+
+.events-section-label {
+  display: block;
+
+  color: #787a91;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-badge {
+  display: inline-block;
+
+  padding: 7px 11px;
+
+  border-radius: 3px;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.status-upcoming {
+  border: 1px solid #0f044c;
+  color: #0f044c;
+}
+
+.status-completed {
+  background-color: #eeeeee;
+  color: #787a91;
+}
+
+.status-closed {
+  background-color: #eeeeee;
+  color: #787a91;
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.occurrence-detail-date {
+  margin-bottom: 55px;
+
+  padding: 20px 0;
+
+  border-top: 1px solid rgba(120, 122, 145, 0.2);
+  border-bottom: 1px solid rgba(120, 122, 145, 0.2);
+
+  color: #141e61;
+
+  font-size: 0.95rem;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.occurrence-detail-description {
+  max-width: 800px;
+}
+
+.occurrence-detail-description .events-section-label {
+  margin-bottom: 15px;
+}
+
+.occurrence-detail-description p {
+  margin: 0;
+
+  color: #787a91;
+
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+
+/* =========================================
+   APPLICATION SECTION
+========================================= */
+
+.events-drilldown {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+
+/* =========================================
+   APPLICATION LAYOUT
+========================================= */
+
+.application-layout {
+  display: grid;
+
+  grid-template-columns: 0.8fr 1.2fr;
+
+  gap: 80px;
+
+  margin-top: 50px;
+}
+
+
+/* =========================================
+   APPLICATION INTRO
+========================================= */
+
+.application-intro h2 {
+  margin: 12px 0 20px;
+
+  color: #0f044c;
+
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.05;
+}
+
+.application-intro > p {
+  color: #787a91;
+
+  line-height: 1.8;
+}
+
+.application-note {
+  display: grid;
+  gap: 5px;
+
+  margin-top: 38px;
+  padding-left: 16px;
+
+  border-left: 3px solid #141e61;
+
+  color: #787a91;
+
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.application-note strong {
+  color: #141e61;
+}
+
+
+/* =========================================
+   APPLICATION FORM
+========================================= */
+
+.application-form {
+  padding: 30px;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(120, 122, 145, 0.2);
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  color: #0f044c;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-field label span {
+  color: #141e61;
+}
+
+.form-field input:not([type="checkbox"]),
+.form-field textarea,
+.form-field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  border: 1px solid rgba(120, 122, 145, 0.45);
+
+  border-radius: 3px;
+
+  background-color: #eeeeee;
+  color: #0f044c;
+
+  outline: none;
+
+  font-family: inherit;
+}
+
+.form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: #141e61;
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.checkbox-field input {
+  accent-color: #141e61;
+}
+
+
+/* =========================================
+   FORM BUTTON
+========================================= */
+
+.application-submit {
+  width: 100%;
+
+  padding: 13px 20px;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: #141e61;
+  color: #eeeeee;
+
+  cursor: pointer;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  transition: background-color 0.2s ease;
+}
+
+.application-submit:hover {
+  background-color: #0f044c;
+}
+
+.application-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+/* =========================================
+   FORM DISABLED NOTE
+========================================= */
+
+.form-disabled-note {
+  margin: 13px 0 0;
+
+  color: #787a91;
+
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   STATES
+========================================= */
+
+.events-state {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(120, 122, 145, 0.2);
+}
+
+.events-state h3 {
+  margin: 0 0 10px;
+
+  color: #0f044c;
+}
+
+.events-state p {
+  margin: 0 0 25px;
+
+  color: #787a91;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.event-primary-btn {
+  display: inline-block;
+
+  padding: 10px 14px;
+
+  border: 0;
+  border-radius: 5px;
+
+  background-color: #141e61;
+  color: #eeeeee;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  transition: background-color 0.2s ease;
+}
+
+.event-primary-btn:hover {
+  background-color: #0f044c;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .application-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+
+
+@media (max-width: 620px) {
+  .events-container {
+    padding: 45px 0 80px;
+  }
+
+  .breadcrumb {
+    margin-bottom: 45px;
+  }
+
+  .occurrence-detail-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .occurrence-detail-header h1 {
+    letter-spacing: -1px;
+  }
+
+  .occurrence-detail-date {
+    margin-bottom: 45px;
+  }
+
+  .application-form {
+    padding: 22px;
+  }
+}

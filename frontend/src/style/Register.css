@@ -185,6 +185,122 @@
     color: rgb(238, 238, 238);
 }
 
+/* Verification Card */
+.verification-card {
+    width: 100%;
+    max-width: 440px;
+    background: rgb(238, 238, 238);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.verification-icon {
+    font-size: 52px;
+    margin-bottom: 12px;
+}
+
+.verification-card h2 {
+    color: rgb(15, 4, 76) !important;
+    font-size: 26px !important;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.verification-text {
+    color: rgb(75, 85, 99);
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.verification-email-badge {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #1e3a8a;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 20px;
+    word-break: break-all;
+    border: 1px solid #bfdbfe;
+}
+
+.verification-info-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.verification-info-box p {
+    color: rgb(15, 4, 76);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.verification-info-box .spam-hint {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 0;
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 8px;
+}
+
+.verification-action-btn {
+    width: 100%;
+    padding: 14px;
+    background: rgb(20, 30, 97);
+    color: rgb(238, 238, 238);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.verification-action-btn:hover {
+    background: rgb(15, 4, 76);
+    transform: translateY(-1px);
+}
+
+.verification-footer {
+    margin-top: 20px;
+}
+
+.verification-footer .back-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: color 0.2s ease;
+    box-shadow: none;
+    transform: none;
+    width: auto;
+    margin: 0 auto;
+}
+
+.verification-footer .back-btn:hover {
+    color: rgb(15, 4, 76);
+    background: transparent;
+    transform: none;
+}
+
 /* Mobile */
 
 @media (max-width: 500px) {
@@ -192,7 +308,8 @@
         padding: 15px;
     }
 
-    .register-container form {
+    .register-container form,
+    .verification-card {
         padding: 25px 20px;
     }
 

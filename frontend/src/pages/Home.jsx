@@ -13,6 +13,7 @@ function Home() {
         .select(`
           id,
           season_name,
+          cover_image_url,
           description,
           start_date,
           status,
@@ -177,28 +178,41 @@ function Home() {
                   className="event-card"
                   key={event.id}
                 >
-                  <div className="event-card-top">
-                    <span className="event-status">
-                      {event.status}
-                    </span>
-                    <span className="event-category">
-                      {event.event_programs?.event_categories?.name}
-                    </span>
-                  </div>
-                  <h3>{event.event_programs?.name} — {event.season_name}</h3>
-                  <p>{event.description}</p>
-                  <div className="event-card-footer">
-                    <span>
-                      {event.start_date
-                        ? new Date(event.start_date).toLocaleDateString(
-                            "en-US",
-                            { year: "numeric", month: "long", day: "numeric" }
-                          )
-                        : "Date TBA"}
-                    </span>
-                    <a href={`/events/${event.id}`}>
-                      View Event →
-                    </a>
+                  {event.cover_image_url && (
+                    <div className="event-card-banner">
+                      <img
+                        src={event.cover_image_url}
+                        alt={`${event.event_programs?.name || 'Event'} — ${event.season_name}`}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div className="event-card-body">
+                    <div className="event-card-top">
+                      <span className="event-status">
+                        {event.status}
+                      </span>
+                      <span className="event-category">
+                        {event.event_programs?.event_categories?.name}
+                      </span>
+                    </div>
+                    <h3>{event.event_programs?.name} — {event.season_name}</h3>
+                    <p>{event.description}</p>
+                    <div className="event-card-footer">
+                      <span>
+                        {event.start_date
+                          ? new Date(event.start_date).toLocaleDateString(
+                              "en-US",
+                              { year: "numeric", month: "long", day: "numeric" }
+                            )
+                          : "Date TBA"}
+                      </span>
+                      <a href={`/events/${event.id}`}>
+                        View Event →
+                      </a>
+                    </div>
                   </div>
                 </article>
               ))}
